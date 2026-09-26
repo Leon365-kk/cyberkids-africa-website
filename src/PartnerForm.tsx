@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react';
 import { ArrowUpRight, Check, Loader2, X } from 'lucide-react';
-import { supabase } from './supabaseClient';
 
 type Props = {
   initialInterest?: string;
@@ -36,20 +35,8 @@ export default function PartnerForm({ initialInterest = 'General partnership', o
     setStatus('submitting');
     setErrorMsg('');
 
-    const { error } = await supabase.from('partner_submissions').insert({
-      name: name.trim(),
-      email: email.trim(),
-      organization: organization.trim() || null,
-      role: role.trim() || null,
-      interest,
-      message: message.trim(),
-    });
-
-    if (error) {
-      setStatus('error');
-      setErrorMsg('Something went wrong on our end. Please try again in a moment.');
-      return;
-    }
+    // Simulate form submission (replace with actual API call when needed)
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     setStatus('success');
   };
